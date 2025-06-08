@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Notificação Web</title>
+</head>
+<body>
+  <h1>Notificação Web</h1>
+  <button id="btnNotify">Mostrar Notificação</button>
+
+  <script>
+    // Verifica se o navegador suporta
+    if (!("Notification" in window)) {
+      alert("Este navegador não suporta notificações.");
+    }
+
+    document.getElementById("btnNotify").addEventListener("click", function () {
+      // Pede permissão
+      Notification.requestPermission().then(function (permission) {
+        if (permission === "granted") {
+          // Mostra a notificação
+          new Notification("Olá, John!", {
+            body: "Esta é uma mensagem enviada via API de Notificação!",
+            icon: "https://cdn-icons-png.flaticon.com/512/1827/1827377.png" // ícone opcional
+          });
+        } else {
+          alert("Permissão negada para notificações.");
+        }
+      });
+    });
+  </script>
+</body>
+</html>
